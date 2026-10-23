@@ -26,4 +26,7 @@ settings put global window_animation_scale 0.0
 settings put global transition_animation_scale 0.0
 settings put global animator_duration_scale 0.0
 
+# 5. Pembuangan Kalendar Samsung
+pm uninstall -k --user 0 com.samsung.android.calendar
+
 echo "Pembersihan telemetri selesai. Sila reboot peranti."
