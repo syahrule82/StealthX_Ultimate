@@ -1,12 +1,28 @@
 #!/bin/bash
-# Nama Fail: stealthx_redmi10c_debloat.sh
-# Projek: StealthX_Ultimate - Redmi 10C (fog) Absolute
-# Pembangun: Mohd Syahrulzaman bin Saharani (syahrule82)
-# Tujuan: Penghapusan Mi Gallery dan pengoptimuman Redmi 10C
+# ===================================================
+# StealthX Ultimate: Redmi 10C Optimization Script
+# Target: Snapdragon 680 / Adreno 610 (Non-Root)
+# ===================================================
 
-echo "Memulakan protokol StealthX Redmi 10C Absolute..."
+echo "Memulakan Protokol StealthX pada Redmi 10C..."
 
-# 1. Pembuangan Mi Gallery
+# 1. Nyah-lewah Aplikasi Lewah & Telemetri Xiaomi/Redmi
+pm uninstall -k --user 0 com.mi.globalbrowser
+pm uninstall -k --user 0 com.android.browser
+pm uninstall -k --user 0 com.miui.player
+pm uninstall -k --user 0 com.miui.videoplayer
 pm uninstall -k --user 0 com.miui.gallery
+pm uninstall -k --user 0 com.miui.msa.global
+pm uninstall -k --user 0 com.miui.analytics
+pm uninstall -k --user 0 com.miui.daemon
+pm uninstall -k --user 0 com.xiaomi.mipicks
 
-echo "Pembersihan Redmi 10C selesai. Sila reboot peranti."
+# 2. Pseudo-Underclock: Mematikan Joyose & Powerkeeper (Penjimat Bateri)
+pm uninstall -k --user 0 com.xiaomi.joyose
+pm uninstall -k --user 0 com.miui.powerkeeper
+
+# 3. Pecutan GPU SkiaVK Vulkan Global (Sesuai untuk Adreno 610)
+setprop debug.hwui.renderer skiavk
+setprop debug.hwui.use_vulkan true
+
+echo "Suntikan StealthX Redmi 10C Berjaya 100%!"
