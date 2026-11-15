@@ -61,3 +61,7 @@ pm trim-caches 999999999999999999
 echo "[<<<] StealthX Universal Selesai. Ekosistem peranti kini berada di tahap optimum."
 sleep 3
 reboot
+
+# Menjalankan penalaan mutlak Standby Bucket, FSTRIM & Whitelist Perbankan
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+bash "${SCRIPT_DIR}/stealthx_tune.sh"
