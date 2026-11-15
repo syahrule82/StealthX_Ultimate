@@ -1,4 +1,4 @@
-=== LAPORAN PENGAUDITAN STEALTHX (2026-11-15T09:37:29+08:00) ===
+=== LAPORAN PENGAUDITAN STEALTHX (2026-11-15T13:40:33+08:00) ===
 Model Peranti: 22111317PG
 Versi Android: 14
 
@@ -14,6 +14,7 @@ user,com.cimb.cimbocto,10371
 
 --- Senarai Aplikasi Terhad (Standby Bucket 45) ---
 com.google.android.apps.subscriptions.red: 45
+com.shopeepay.my: 45
 com.setel.mobile: 45
 com.openai.chatgpt: 45
 com.lemon.lvoverseas: 45
@@ -27,6 +28,7 @@ com.mytnb.mytnb: 45
 com.miui.compass: 45
 com.epf.mip: 45
 com.duokan.phone.remotecontroller: 45
+com.lazada.android: 45
 com.google.android.apps.docs: 45
 com.google.android.apps.maps: 45
 com.mobile.legends: 45
@@ -41,6 +43,7 @@ com.google.android.projection.gearhead: 45
 com.binance.dev: 45
 network.bee.app: 45
 com.ubisoft.redlynx.trialsfrontier.ggp: 45
+com.shopee.my: 45
 com.mktv.steelkiwi.muslimkidstv: 45
 pi.browser: 45
 com.google.earth: 45
