@@ -34,6 +34,9 @@ RESTRICTED_PKGS=(
   "com.epf.mip"
   "my.gov.onegovappstore.myubat"
   "tuju.my"
+  "com.shopee.my"
+  "com.shopeepay.my"
+  "com.lazada.android"
 )
 
 # Senarai pengecualian aplikasi kewangan (Standby Bucket 5 / Exempted)
