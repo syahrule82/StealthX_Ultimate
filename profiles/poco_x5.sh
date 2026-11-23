@@ -11,15 +11,19 @@ fi
 echo "[>>>] Memulakan Penalaan StealthX — POCO X5 5G (HyperOS)..."
 $ADB_CMD shell '
   echo "[1/4] Membersihkan blok storan kilat UFS 2.2 (sm fstrim)..."
-  sm fstrim
+  sm fstrim >/dev/null
 
-  echo "[2/4] Mematikan sepenuhnya skala animasi (0.0x) & mengunci paparan 60 Hz..."
-  settings put global window_animation_scale 0.0
-  settings put global transition_animation_scale 0.0
-  settings put global animator_duration_scale 0.0
-  settings put system user_refresh_rate 60
-  settings put system peak_refresh_rate 60.0
-  settings put system min_refresh_rate 60.0
+  echo "[2/4] Menyemak & menguatkuasakan skala animasi (0.0x) serta paparan 60 Hz..."
+  for KEY in window_animation_scale transition_animation_scale animator_duration_scale; do
+    CUR=$(settings get global "$KEY" 2>/dev/null || echo "")
+    if [ "$CUR" != "0.0" ] && [ "$CUR" != "0" ]; then
+      settings put global "$KEY" 0.0 2>/dev/null || echo "  [!] Aktifkan USB Debugging (Security Settings) pada HyperOS untuk ubah $KEY"
+    fi
+  done
+
+  settings put system user_refresh_rate 60 2>/dev/null || true
+  settings put system peak_refresh_rate 60.0 2>/dev/null || true
+  settings put system min_refresh_rate 60.0 2>/dev/null || true
 
   echo "[3/4] Mengkompilasi binaan Android System WebView ke kod natif (speed-profile)..."
   cmd package compile -m speed-profile -f com.google.android.webview
