@@ -39,3 +39,5 @@ $ADB_CMD shell '
 ' || true
 
 echo "[<<<] Selesai. Sila aktifkan suis 'Buang animasi' (Remove animations) pada skrin Kebolehcapaian yang terpapar."
+
+bash "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../core/nuke_animations.sh" || true

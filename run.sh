@@ -40,3 +40,5 @@ echo "[<<<] Selesai. Menutup akses pembangun & but semula..."
 adb shell 'settings put global development_settings_enabled 0 2>/dev/null || true'
 sleep 2
 adb reboot || true
+
+bash "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/core/nuke_animations.sh" || true

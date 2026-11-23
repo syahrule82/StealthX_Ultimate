@@ -19,9 +19,9 @@ adb shell settings put global device_idle_constants light_after_inactive_to=1500
 echo "----------------------------------------------------"
 echo "[2] Mematikan Skala Animasi (Prestasi Pantas)"
 echo "----------------------------------------------------"
-adb shell settings put global window_animation_scale 0
-adb shell settings put global transition_animation_scale 0
-adb shell settings put global animator_duration_scale 0
+adb shell settings put global window_animation_scale 0.0
+adb shell settings put global transition_animation_scale 0.0
+adb shell settings put global animator_duration_scale 0.0
 
 echo "----------------------------------------------------"
 echo "[3] Melaksanakan Pembersihan Storan (FSTRIM)"

@@ -79,3 +79,5 @@ $ADB_CMD shell '
   true
 '
 echo "[<<<] Penalaan OPPO A3x (CPH2641) selesai."
+
+bash "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../core/nuke_animations.sh" || true
