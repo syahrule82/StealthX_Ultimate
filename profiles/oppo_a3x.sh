@@ -16,9 +16,9 @@ $ADB_CMD shell '
   echo "[2/6] Mengunci paparan kepada 60 Hz & mempercepatkan skala animasi (0.5x)..."
   settings put system peak_refresh_rate 60.0
   settings put system min_refresh_rate 60.0
-  settings put global animator_duration_scale 0.5
-  settings put global transition_animation_scale 0.5
-  settings put global window_animation_scale 0.5
+  settings put global animator_duration_scale 0.0
+  settings put global transition_animation_scale 0.0
+  settings put global window_animation_scale 0.0
 
   echo "[3/6] Membuang telemetri, iklan & bloatware ColorOS / HeyTap / Amazon / Meta..."
   for OBLOAT in \
