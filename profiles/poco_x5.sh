@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-# Profil Penalaan StealthX_Ultimate — POCO X5 5G (22111317PG | moonstone / SM6375)
-# Dioptimumkan untuk sifar animasi (0.0x), kunci 60Hz HyperOS, kompilasi WebView
-# serta penutupan automatik Pilihan Pembangun & pintasan terus ke menu Buang Animasi.
+# Profil Penalaan StealthX_Ultimate — POCO X5 5G (HyperOS)
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ADB_CMD="adb"
 if ! adb get-state >/dev/null 2>&1 && sudo adb get-state >/dev/null 2>&1; then
   ADB_CMD="sudo adb"
@@ -11,10 +10,7 @@ fi
 
 echo "[>>>] Memulakan Penalaan StealthX — POCO X5 5G (HyperOS)..."
 $ADB_CMD shell '
-  echo "[1/5] Membersihkan blok storan kilat UFS 2.2 (sm fstrim)..."
-  sm fstrim >/dev/null
-
-  echo "[2/5] Menetapkan skala animasi (0.0x) & paparan 60 Hz..."
+  sm fstrim >/dev/null 2>&1 || true
   for KEY in window_animation_scale transition_animation_scale animator_duration_scale; do
     settings put global "$KEY" 0.0 2>/dev/null || true
   done
@@ -24,20 +20,18 @@ $ADB_CMD shell '
   settings put system peak_refresh_rate 60.0 2>/dev/null || true
   settings put system min_refresh_rate 60.0 2>/dev/null || true
 
-  echo "[3/5] Mengkompilasi binaan Android System WebView ke kod natif (speed-profile)..."
-  cmd package compile -m speed-profile -f com.google.android.webview
+  for SYS_PKG in com.miui.powerkeeper com.miui.screenrecorder; do
+    cmd package install-existing "$SYS_PKG" >/dev/null 2>&1 || true
+    pm enable "$SYS_PKG" >/dev/null 2>&1 || true
+  done
+  cmd appops set com.miui.screenrecorder PROJECT_MEDIA allow >/dev/null 2>&1 || true
 
-  echo "[4/5] Membuka terus menu Kebolehcapaian (Accessibility) pada skrin peranti..."
+  cmd package compile -m speed-profile -f com.google.android.webview >/dev/null 2>&1 || true
   am start -a android.settings.ACCESSIBILITY_SETTINGS >/dev/null 2>&1 || true
-
-  echo "[5/5] Mematikan Pilihan Pembangun (Developer Options) untuk keserasian perbankan..."
-  if settings put global development_settings_enabled 0 2>/dev/null; then
-    echo "  [OK] Pilihan Pembangun berjaya dimatikan secara automatik."
-  else
-    echo "  [!] HyperOS menyekat penutupan automatik: matikan suis Pilihan Pembangun secara manual."
-  fi
 ' || true
 
-echo "[<<<] Selesai. Sila aktifkan suis 'Buang animasi' (Remove animations) pada skrin Kebolehcapaian yang terpapar."
+bash "${SCRIPT_DIR}/../core/nuke_animations.sh" || true
+bash "${SCRIPT_DIR}/../stealthx_tune.sh" || true
 
-bash "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../core/nuke_animations.sh" || true
+$ADB_CMD shell 'settings put global development_settings_enabled 0 2>/dev/null || true' || true
+echo "[<<<] Selesai. Pastikan suis Buang animasi (Remove animations) aktif & matikan Pilihan Pembangun secara manual."

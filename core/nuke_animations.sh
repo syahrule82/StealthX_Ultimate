@@ -21,6 +21,7 @@ settings put system reduce_animations 1 2>/dev/null || true
 settings put system miui_home_animation_rate 0 2>/dev/null || true
 settings put system oppo_animation_scale 0.0 2>/dev/null || true
 settings put secure oppo_animation_scale 0.0 2>/dev/null || true
+settings put system transsion_animation_scale 0.0 2>/dev/null || true
 
 echo "  window_animation_scale     : $(settings get global window_animation_scale)"
 echo "  transition_animation_scale : $(settings get global transition_animation_scale)"

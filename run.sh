@@ -35,10 +35,10 @@ adb shell 'pm trim-caches 999999999999999999' >/dev/null 2>&1 || true
 
 echo "[+] Fasa 5: Menjalankan stealthx_tune.sh & audit..."
 bash "${SCRIPT_DIR}/stealthx_tune.sh"
+bash "${SCRIPT_DIR}/core/nuke_animations.sh" || true
 
 echo "[<<<] Selesai. Menutup akses pembangun & but semula..."
 adb shell 'settings put global development_settings_enabled 0 2>/dev/null || true'
 sleep 2
 adb reboot || true
 
-bash "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/core/nuke_animations.sh" || true
